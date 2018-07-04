@@ -1,0 +1,17 @@
+sudo: required
+language: node_js
+node_js:
+- 8
+cache:
+  directories:
+  - node_modules
+script:
+- grunt
+deploy:
+- provider: firebase
+  project: mvs-plugin-api
+  token:
+     secure: "A:AutoformatKRFumgWhe6cbCdOb2oPQ37cDoQzctJGri1r/K8l5kwQinfSfEtt/VMVdHBNVbGOnZHXZMMVFSWqNf2t9DhbE5drxH3IdQvyNA5oIX5xu9FozyNEZEiLaPp8YGddDyyfZ9ZCiOoHmr9/oqJ0fG+Dz2iIxmXN4biC4ekTHsx11grF3gmvlvy7mOFZc5fUTSXHqG/4GfWJJo+p9WnUmBj5dSG/c0k0qR+qvX34NKjBYDUl/gKeArcZubaVt8PuKZEyV2DU4p3zx4LjwUiavhBCwMGyqia5r7Hbo2afF794pnlkb+PHS39nOt4Ozv2/C7EvaU9sWdwIOIHPz06pJnNqBE0j3SngPnHvB1DBgS7JYIj/K3dcRE6jVArUd1IA6QxYaiF2yeogZHoDCFFGXxFRM2MRPOZjg6AZX21mIJjde7kAEbroL6vhTTiqfk0MFEMV6G6o1GnG9MNC9Ku0cte7r9BM4CQ2I0janDFU2UHewMG7PM16mwDBgwEv4xf3jkqiVU/pFuSRJFtboEuA37mJc0YR6q0qBLEB8MsVHlEeQ6FTALpyf80zUFaca6HITs53HH2lrtXIkNcHQXVQMzcwIG3Wf1JGkVuRG72OJUj3vrtGvPrEsTpqfJQe6qQpHqovMc6OcjIPRvQLrIXze8jYxkll01gV5IVTgymL+ChRE="
+  skip_cleanup: true
+  on:
+    branch: master
