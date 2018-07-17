@@ -29,6 +29,27 @@ Lightwallet.prototype.send = function(data, target) {
     });
 };
 
+Lightwallet.prototype.sign = function(text, avatar) {
+    return this.send({
+        query: 'sign',
+        params: {
+            avatar: avatar,
+            text: text
+        }
+    }).then(response => response.value);
+};
+
+Lightwallet.prototype.verify = function(content, address, signature) {
+    return this.send({
+        query: 'verify',
+        params: {
+            text: content,
+            address: address,
+            signature: signature
+        }
+    }).then(response => response.value);
+};
+
 Lightwallet.prototype.createMIT = function(avatar, symbol, content, raw) {
     if(typeof raw === 'undefined')
         raw=false;
@@ -41,6 +62,18 @@ Lightwallet.prototype.createMIT = function(avatar, symbol, content, raw) {
             avatar: avatar,
             raw: raw
         }
+    }).then(response => response.value);
+};
+
+Lightwallet.prototype.unlock = function() {
+    return this.send({
+        query: 'unlock'
+    }).then(response => response.value);
+};
+
+Lightwallet.prototype.getNetwork = function() {
+    return this.send({
+        query: 'network'
     }).then(response => response.value);
 };
 
