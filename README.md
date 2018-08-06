@@ -29,7 +29,7 @@ If you want to build the API from source you can use grunt.
 
 # Usage
 
-## Get list of Avatars
+## Get List of Avatars
 
 Required permissions: avatars
 
@@ -41,25 +41,21 @@ lightwallet.getAvatars()
   .catch(console.error);
 ```
 
-## Broadcast raw transaction
+## Broadcast Raw Transaction
 
 Required permissions: broadcast
 
 ``` javascript
-var lightwallet = new Lightwallet();
-
 lightwallet.broadcast(tx)
   .then(console.log)
   .catch(console.error);
 ```
 
-## Create MIT registration transaction
+## Create MIT Registration Transaction
 
 Required permissions: create-mit
 
 ``` javascript
-var lightwallet = new Lightwallet();
-
 var avatar = "canguruhh"; //Avatar that should be the issuer and recipient of the MIT
 var symbol = "new-mit"; //New MIT symbol
 var content = "some content for the new MIT";
@@ -70,18 +66,72 @@ lightwallet.createMIT(avatar, symbol, content, getraw)
   .catch(console.error);
 ```
 
-## List permissions
+## Get list of Addresses
+
+Required permissions: addresses
+
+``` javascript
+lightwallet.addresses()
+  .then(addresses=>addresses.forEach(console.log))
+  .catch(console.error);
+```
+
+## List Permissions
 
 No permissions required
 
 ``` javascript
-var lightwallet = new Lightwallet();
-
-
 lightwallet.getPermissions()
   .then(permissions=>permissions.forEach(console.log))
   .catch(console.error);
 ```
+
+## Get Network
+
+No permissions required
+
+``` javascript
+lightwallet.getPermissions()
+  .then(permissions=>permissions.forEach(console.log))
+  .catch(console.error);
+```
+
+## Unlock
+
+Unlock the wallet for this plugin session to enable the use of functions like the sign function without having the user to enter the passphrase for every interaction. Can be used for message signing for example.
+
+``` javascript
+lightwallet.unlock()
+  .catch(console.error);
+```
+
+## Sign Message
+
+Required permissions: sign
+
+``` javascript
+var message = "hello world";
+var avatar = "metaverse";
+
+lightwallet.sign(message, avatar)
+  .then(console.log)
+  .catch(console.error);
+```
+
+## Verify Message
+
+Required permissions: verify
+
+``` javascript
+var message = "hello world";
+var avatar = "metaverse";
+var signature = "signaturesignaturesignaturesignaturesignaturesignature";
+
+lightwallet.sign(message, avatar, signature)
+  .then(console.log)
+  .catch(console.error);
+```
+
 
 # Licence
 
