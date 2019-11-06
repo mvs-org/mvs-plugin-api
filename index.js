@@ -1,4 +1,5 @@
-function Lightwallet() {
+function Lightwallet(config) {
+    this.target = config === undefined || config.target === undefined ? 'http://localhost:8100' : config.target;
     this.nonce = Math.floor(new Date()*1000);
     this.tasks = {};
     if (window.parent == window) throw 'Plugin must be child of lightwallet';
@@ -14,11 +15,9 @@ function Lightwallet() {
             }
         };
 };
-Lightwallet.prototype.send = function(data, target) {
-    if (typeof target === 'undefined')
-        target = 'http://localhost:8100';
+Lightwallet.prototype.send = function(data) {
     data.nonce = this.nonce++;
-    window.parent.postMessage(data, target);
+    window.parent.postMessage(data, this.target);
     return new Promise((resolve, reject) => {
         this.tasks[data.nonce] = function(error, data) {
             if (error)

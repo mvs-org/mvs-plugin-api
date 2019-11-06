@@ -1,4 +1,5 @@
 # Logs
+.firebase
 dist
 logs
 *.log
