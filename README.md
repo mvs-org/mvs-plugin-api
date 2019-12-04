@@ -34,7 +34,7 @@ If you want to build the API from source you can use grunt.
 Required permissions: avatars
 
 ``` javascript
-var lightwallet = new Lightwallet();
+var lightwallet = new Lightwallet({target : '*'});
 
 lightwallet.getAvatars()
   .then(avatars=>avatars.forEach(console.log))
@@ -71,7 +71,7 @@ lightwallet.createMIT(avatar, symbol, content, getraw)
 Required permissions: addresses
 
 ``` javascript
-lightwallet.addresses()
+lightwallet.getAddresses()
   .then(addresses=>addresses.forEach(console.log))
   .catch(console.error);
 ```
@@ -82,7 +82,7 @@ No permissions required
 
 ``` javascript
 lightwallet.getPermissions()
-  .then(permissions=>permissions.forEach(console.log))
+  .then(permissions=>permissions.value.forEach(console.log))
   .catch(console.error);
 ```
 
@@ -91,8 +91,10 @@ lightwallet.getPermissions()
 No permissions required
 
 ``` javascript
-lightwallet.getPermissions()
-  .then(permissions=>permissions.forEach(console.log))
+lightwallet.getNetwork()
+  .then(network => {
+    console.log(network)
+  })
   .catch(console.error);
 ```
 
@@ -120,14 +122,14 @@ lightwallet.sign(message, avatar)
 
 ## Verify Message
 
-Required permissions: verify
+Required permissions: ```verify```
 
 ``` javascript
 var message = "hello world";
 var avatar = "metaverse";
 var signature = "signaturesignaturesignaturesignaturesignaturesignature";
 
-lightwallet.sign(message, avatar, signature)
+lightwallet.verify(message, avatar, signature)
   .then(console.log)
   .catch(console.error);
 ```
